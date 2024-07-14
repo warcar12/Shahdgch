@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mystique Network</title>
+    <meta name="description" content="Find and download your favorite games on Mystique Network.">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e0e0e0;
+            color: #333;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 1em 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: block;
+            margin: 0 auto;
+            max-width: 100px;
+            margin-bottom: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 1em;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:focus {
+            outline: 2px solid #fff;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('hero-bg.jpg') no-repeat center center/cover;
+            color: #fff;
+            padding: 5em 0;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 1em;
+        }
+
+        .hero input[type="search"] {
+            padding: 0.5em;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            width: 50%;
+            max-width: 500px;
+        }
+
+        .categories {
+            padding: 2em;
+            text-align: center;
+        }
+
+        .categories h2 {
+            font-size: 2em;
+            margin-bottom: 1em;
+        }
+
+        .category-grid {
+            display: flex;
+            justify-content: center;
+            gap: 2em;
+            flex-wrap: wrap;
+        }
+
+        .category {
+            background-color: #fff;
+            padding: 1em;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: center;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 500px;
+            margin-bottom: 1em;
+        }
+
+        .category img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 0.5em;
+            border-radius: 10px;
+        }
+
+        .category h3 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .category:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+            position: sticky;
+            bottom: 0;
+        }
+
+        main {
+            padding: 2em;
+        }
+
+        .content {
+            margin: 2em 0;
+        }
+
+        .game-details {
+            text-align: center;
+        }
+
+        .game-details h2 {
+            font-size: 2em;
+            margin-bottom: 1em;
+        }
+
+        .game-details button {
+            padding: 0.5em 1em;
+            font-size: 1em;
+            margin: 0.5em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #2c3e50;
+            color: #fff;
+        }
+
+        @media (max-width: 600px) {
+            .category {
+                width: 100%;
+            }
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            outline: none;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://i.ibb.co/nftR5SJ/IMG-20240630-WA0001.jpg" alt="Mystique Network Logo" class="logo">
+        <h1>Mystique Network</h1>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showSection('home')">Home</a></li>
+                <li><a href="#" onclick="showSection('games')">Games</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="home" class="hero">
+            <h2>Download the Latest Games</h2>
+            <p>Find and download your favorite games.</p>
+            <input type="search" id="search-bar" placeholder="Search for games..." onkeyup="searchGames()">
+        </section>
+        <section id="games" class="categories" style="display: none;">
+            <h2>All Games</h2>
+            <div class="category-grid">
+                <div class="category" data-game="minecraft">
+                    <img src="https://i.ibb.co/VJjtQZj/20240714-100913.jpg" alt="Minecraft">
+                    <h3>Minecraft</h3>
+                </div>
+            </div>
+        </section>
+        <section id="game-details" class="game-details" style="display: none;">
+            <h2 id="game-title"></h2>
+            <button id="download-btn"><a href="https://www.mediafire.com/file/pxycindnxe5c6hz/minecraft-1-21-2-02-compressed-by-Mystique-Network.zip/file">Download</a></button>
+            <button onclick="goBack()">Back to Home</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Game Downloader. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function searchGames() {
+            const query = document.getElementById('search-bar').value.toLowerCase();
+            const categories = document.querySelectorAll('#games .category');
+            let found = false;
+
+            categories.forEach(category => {
+                if (category.dataset.game.includes(query)) {
+                    category.style.display = 'block';
+                    found = true;
+                } else {
+                    category.style.display = 'none';
+                }
+            });
+
+            document.getElementById('games').style.display = found || query === '' ? 'block' : 'none';
+        }
+
+        function showSection(sectionId) {
+            document.getElementById('home').style.display = sectionId === 'home' ? 'block' : 'none';
+            document.getElementById('games').style.display = sectionId === 'games' ? 'block' : 'none';
+            document.getElementById('game-details').style.display = sectionId === 'game-details' ? 'block' : 'none';
+        }
+
+        document.querySelectorAll('.category').forEach(category => {
+            category.addEventListener('click', () => {
+                const gameTitle = category.querySelector('h3').innerText;
+                document.getElementById('game-title').innerText = gameTitle;
+                showSection('game-details');
+            });
+        });
+
+        function goBack() {
+            showSection('home');
+        }
+    </script>
+</body>
+                                   </html>
